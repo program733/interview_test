@@ -1,6 +1,6 @@
 def capital(function):
     def inner(name):
-        val = "Mr"+name
+        val = "Mr "+name
         updated_val = function(val)
         return updated_val
     return inner

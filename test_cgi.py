@@ -9,6 +9,7 @@ v_list = [{"a":1, "b": 2, "c": 3}, {"a": 2, "b": 4}, {"c": 47}]
 #result = [{key:value} for key, value in v_list.items()]
 
 
+
 def calculate_di(t_list):
     result_di = {}
     for di in t_list:

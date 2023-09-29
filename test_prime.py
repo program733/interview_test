@@ -9,4 +9,3 @@ def check_prime_no(x):
 check_prime_no(15)
 
 
-xpath = //inoput[@id = 'name_id']

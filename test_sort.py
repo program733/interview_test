@@ -24,7 +24,7 @@ print(fruits)
 num = [i for i in range(30) if i>=2 if i<=25 if i%4==0 if i%8==0]
 print(num)
 
-a = [1, 2, 3]
-b = [7, 8, 9]
+a = [1, 2, 3,4]
+b = [7, 8, 9,10]
 ans = [(x,y) for x,y in zip(a,b)]
 print(ans)
