@@ -21,15 +21,22 @@ print('hello world...')
 """
 
 import pandas as pd
-df = pd.DataFrame()
+dict = [{
+'a' : [10,20,30,40,10,20,30],
+'b': [5,6,7,8,5,6,8,7,7,5]}]
+df = pd.DataFrame(dict)
 cols = df.columns
+print(cols)
 result = []
 for col in cols:
-    col_val = df['col']
-    set_val = set(col_val)
+    col_val = list(df[col])
+    print(col_val[0])
+    set_val = set(col_val[0])
     col_val_count = {}
     for i in set_val:
-        col_val_count.get(i,col_val.count(i))
+        print(i)
+        col_val_count[i]=col_val[0].count(i)
+        print(col_val_count)
     result.append(col_val_count)
 
 print(result)
