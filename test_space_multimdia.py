@@ -20,17 +20,23 @@ for table_name in cursor:
    print(table_name)
 
 # select * from student table
-quer_all = 'select * from student_table'
+quer_all = """select * from student;
+
+
+
+"""
 
 res = cursor.execute(quer_all)
+print(res)
 #print(res) id, name , age,
 
-for i in cursor:
-    print(i)
-#print(cursor.execute(query_str))
-
-query_find = 'select count(age)/5*100 as d_age from student_table group by age'
-cursor.execute(query_find)
-for i in cursor:
-    print(i)
-cnx.close()
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+# #print(cursor.execute(query_str))
+#
+# query_find = 'select count(age)/5*100 as d_age from student_table group by age'
+# cursor.execute(query_find)
+# for i in cursor:
+#     print(i)
+# cnx.close()
