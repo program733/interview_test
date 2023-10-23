@@ -31,3 +31,14 @@ output = [1,2,3
 # tlist = [1,2,3,4,4,3,3,5,7]
 # findodd = lambda x:[i for i in x if (x.count(i))%2!=0]
 # print(findodd(tlist))
+
+
+class Test:
+    def __init__(self,a):
+        self.a = a
+
+    def display(self):
+        print(self.a)
+
+t = Test(2)
+t.display()
