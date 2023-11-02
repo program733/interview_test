@@ -1,0 +1,7 @@
+print('test_fai')
+'''
+a=[1,2,3,2,5,5,8,7,5,8,3,7]
+third highest no
+'''
+slist = sorted(set(a),reverse=True)
+third_highest = slist[2]
