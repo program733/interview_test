@@ -1,30 +1,32 @@
-import xml.etree.ElementTree as ET
+from lxml import etree
 import json
 
 def read_xml(xml_file_path):
-    tree = ET.parse(xml_file_path)
+    tree = etree.parse(xml_file_path)
     root = tree.getroot()
     return root
 
 def update_xml_table(xml_root, sheet_name, json_data):
+    ns = {'ss': 'urn:schemas-microsoft-com:office:spreadsheet'}
+
     # Find the specified sheet by name
-    sheet = xml_root.find(".//Worksheet[@ss:Name='{}']".format(sheet_name), namespaces={'ss': 'urn:schemas-microsoft-com:office:spreadsheet'})
+    sheet = xml_root.find(".//ss:Worksheet[@ss:Name='{}']".format(sheet_name), namespaces=ns)
 
     if sheet is not None:
         # Find the table within the sheet
-        table = sheet.find(".//Table", namespaces={'ss': 'urn:schemas-microsoft-com:office:spreadsheet'})
+        table = sheet.find(".//ss:Table", namespaces=ns)
 
         if table is not None:
             # Update table columns based on JSON data
-            for column in table.findall(".//Cell/Data", namespaces={'ss': 'urn:schemas-microsoft-com:office:spreadsheet'}):
+            for column in table.findall(".//ss:Cell/ss:Data", namespaces=ns):
                 column_name = column.text
                 if column_name in json_data:
                     # Update the column value from JSON data
-                    column.getparent().find(".//Cell/Data", namespaces={'ss': 'urn:schemas-microsoft-com:office:spreadsheet'}).text = str(json_data[column_name])
+                    column.getparent().find(".//ss:Cell/ss:Data", namespaces=ns).text = str(json_data[column_name])
 
 def write_xml(xml_root, output_file):
-    tree = ET.ElementTree(xml_root)
-    tree.write(output_file)
+    tree = etree.ElementTree(xml_root)
+    tree.write(output_file, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
 def main():
     # Path to the XML file
